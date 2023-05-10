@@ -9,7 +9,7 @@ const requireAuth = (req, res, next) => {
 
   try {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    req.customerEmail = decodedToken.customerEmail;
+    req.studentEmail = decodedToken.studentEmail;
     next();
   } catch (err) {
     res.status(401).send({ message: 'Unauthorized' });

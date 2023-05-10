@@ -1,20 +1,33 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { Cart, ElectronicProducts, Home, JeweleryProducts, LandingPage, Login, MensProducts, NotImplemented, ProductDetail, SignUp, WomensProducts } from "./pages";
+import {
+  AddLearner,
+  AdminDashboard,
+  AdminLogin,
+  DeleteLearner,
+  GetLearner,
+  LandingPage,
+  Login,
+  NotImplemented,
+  SignUp,
+  UpdateLearner
+} from "./pages";
 function App() {
   
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/products" element={<Home />} />
+        {/* Student Routes */}
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/men-clothing" element={<MensProducts />} />
-        <Route path="/women-clothing" element={<WomensProducts />} />
-        <Route path="/jewelery" element={<JeweleryProducts />} />
-        <Route path="/electronics" element={<ElectronicProducts />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/details/:id" element={<ProductDetail/>} />
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/learners/add" element={<AddLearner />} />
+        <Route path="/admin/learners/delete" element={<DeleteLearner />} />
+        <Route path="/admin/learners/update" element={<UpdateLearner />} />
+        <Route path="/admin/learners/view" element={<GetLearner />} />
+        {/* Not Implemented Routes */}
         <Route path="*" element={<NotImplemented />} />
       </Routes>
     </Router>

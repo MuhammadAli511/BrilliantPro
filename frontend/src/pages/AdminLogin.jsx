@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { logo } from "../assets";
-import { loginUser } from "../helper";
+import { loginAdmin } from "../helper";
 
-const Login = () => {
+const AdminLogin = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -23,14 +23,14 @@ const Login = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const response = await loginUser({ email, password });
+      const response = await loginAdmin({ email, password });
       if (!response) {
         alert("Can not reach Server");
       }
       if (response.status === 200) {
         localStorage.setItem('token', response.token);
         localStorage.setItem('email', response.email);
-        navigate("/studentDashboard");
+        navigate("/products");
       }
       else {
         alert(response.message);
@@ -59,14 +59,14 @@ const Login = () => {
       </nav>
       <div className="mt-44 flex justify-center items-center flex-col overflow-y-hidden">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">
-          Student Log In
+          Admin Log In
         </h1>
         <div className="flex justify-center items-center flex-col">
           <Link
-            to="/admin/login"
+            to="/login"
             className="flex items-center text-sm font-semibold py-2 px-3 text-gray-900 underline"
           >
-            Login as Admin
+            Login as Student
           </Link>
         </div>
         <form
@@ -116,4 +116,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default AdminLogin;

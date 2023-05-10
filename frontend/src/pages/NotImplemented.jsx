@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Categories, Navbar } from "../components";
+import { Navbar } from "../components";
 
 const NotImplemented = () => {
 

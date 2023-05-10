@@ -8,13 +8,9 @@ const LandingPage = () => {
     return (
         <div>
             <nav className="flex items-center justify-between py-4 px-6 bg-white shadow-md">
-                <div className="flex items-center">
+                <div className="flex items-center font-bold text-2xl">
                     <Link to="/">
-                        <img
-                            src={logo}
-                            alt="Logo"
-                            className="h-8 w-28 mr-2"
-                        />
+                        BrilliantPro
                     </Link>
                 </div>
                 <div>
@@ -24,12 +20,12 @@ const LandingPage = () => {
                 </div>
             </nav>
             <div className="mt-44 flex justify-center items-center flex-col overflow-y-hidden">
-                <h1 className="text-4xl font-bold mb-8">Welcome to Veevex</h1>
+                <h1 className="text-4xl font-bold mb-8">Welcome to BrilliantPro</h1>
                 <p className="text-lg mb-8">
-                    We offer a wide range of products to suit all your needs. From electronics to fashion, we've got it all.
+                    We offer a wide range of courses to suit all your needs. From technical to non-technical, we've got it all.
                 </p>
                 <div className="mt-8" style={{ overflow: "hidden" }}>
-                    <h2 className="text-2xl font-bold my-5 text-center">What Our Customers Are Saying</h2>
+                    <h2 className="text-2xl font-bold my-5 text-center">What Our Students Are Saying</h2>
                     <Slider
                         infinite={true}
                         speed={8000}

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const customerSchema = mongoose.Schema({
+const studentSchema = mongoose.Schema({
     firstName: {
         type: String,
         required: true
@@ -20,4 +20,4 @@ const customerSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Customers',customerSchema)
+module.exports = mongoose.model('Students',studentSchema)
