@@ -4,6 +4,7 @@ const courseSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
+        unique: true
     },
     author: {
         type: String,
@@ -33,11 +34,6 @@ const courseSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    materialCount: {
-        type: Number, 
-        default: 0
-    },
-    
 });
 
 module.exports = mongoose.model('Course', courseSchema);

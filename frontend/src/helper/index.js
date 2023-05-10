@@ -72,3 +72,52 @@ export const loginAdmin = async ({ email, password }) => {
   });
   return await response.json();
 };
+
+// Function to add a course
+export const addCourse = async ({ title, author, price, description, category, image, startDate, endDate }) => {
+  const response = await fetch(`${API_URL}/courseRoute/add`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ title, author, price, description, category, image, startDate, endDate }),
+  });
+  return await response.json();
+}
+
+// Function to update a course
+export const updateCourse = async ({ title, author, price, description, category, image, startDate, endDate }) => {
+  const response = await fetch(`${API_URL}/courseRoute/update`, {
+    method: "PUT",
+    headers: getHeaders(),
+    body: JSON.stringify({ title, author, price, description, category, image, startDate, endDate }),
+  });
+  return await response.json();
+}
+
+// Function to delete a course
+export const deleteCourse = async ({ title }) => {
+  const response = await fetch(`${API_URL}/courseRoute/delete`, {
+    method: "DELETE",
+    headers: getHeaders(),
+    body: JSON.stringify({ title }),
+  });
+  return await response.json();
+}
+
+// Function to get all courses
+export const getAllCourses = async () => {
+  const response = await fetch(`${API_URL}/courseRoute/getAll`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+  return await response.json();
+}
+
+// Function to get a course
+export const getCourse = async ({ title }) => {
+  const response = await fetch(`${API_URL}/courseRoute/get/`, {
+    method: "GET",
+    headers: getHeaders(),
+    body: JSON.stringify({ title }),
+  });
+  return await response.json();
+}

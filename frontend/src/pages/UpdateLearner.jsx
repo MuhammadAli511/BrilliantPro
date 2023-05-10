@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminNavbar } from "../components";
 import { updateUser } from "../helper";
 
-const AddLearner = () => {
+const UpdateLearner = () => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -100,4 +100,4 @@ const AddLearner = () => {
   );
 };
 
-export default AddLearner;
+export default UpdateLearner;
