@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { AdminNavbar } from "../components";
-import { getAllStudents } from "../helper";
+import { AdminNavbar } from "../../../components";
+import { getAllStudents } from "../../../helper";
 
 const LearnerCard = ({ learner }) => {
   return (

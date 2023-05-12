@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AdminNavbar } from "../components";
-import { deleteUser } from "../helper";
+import { AdminNavbar } from "../../../components";
+import { deleteCourse } from "../../../helper";
 
-const DeleteLearner = () => {
+const DeleteCourse = () => {
   const [formData, setFormData] = useState({
-    email: "",
+    title: "",
   });
-  const { email } = formData;
+  const { title } = formData;
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const onChange = (e) => {
@@ -20,12 +20,12 @@ const DeleteLearner = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const response = await deleteUser({ email });
+      const response = await deleteCourse({ title });
       if (!response) {
         alert("Can not reach Server");
       }
       if (response.status === 200) {
-        alert("Learner Deleted");
+        alert("Course Deleted");
         navigate("/admin/dashboard");
       } else {
         alert(response.message);
@@ -39,7 +39,7 @@ const DeleteLearner = () => {
       <AdminNavbar />
       <div className="mt-20 flex justify-center items-center flex-col overflow-y-hidden">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">
-          Delete Learner
+          Delete Course
         </h1>
         <form
           onSubmit={handleSubmit}
@@ -47,16 +47,16 @@ const DeleteLearner = () => {
         >
           <div className="mb-4">
             <label
-              htmlFor="email"
+              htmlFor="title"
               className="block text-gray-700 font-semibold mb-2"
             >
-              Email
+              Course Title
             </label>
             <input
-              type="email"
+              type="title"
               id="email"
-              name="email"
-              value={email}
+              name="title"
+              value={title}
               onChange={onChange}
               className="border border-gray-300 p-2 rounded w-64"
               required
@@ -69,7 +69,7 @@ const DeleteLearner = () => {
             {isLoading ? (
               <div className="loader"></div>
             ) : (
-              "Delete Learner"
+              "Delete Course"
             )}
           </button>
         </form>
@@ -78,4 +78,4 @@ const DeleteLearner = () => {
   );
 };
 
-export default DeleteLearner;
+export default DeleteCourse;

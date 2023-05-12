@@ -19,13 +19,9 @@ const Navbar = ({ onChange }) => {
   }
   return (
     <nav className="flex items-center justify-between py-4 px-6 bg-white shadow-md">
-      <div className="flex items-center">
+      <div className="flex items-center font-bold text-2xl">
         <button onClick={handleRedirection}>
-        <img
-          src={ logo }
-          alt="Logo"
-          className="h-8 w-28 mr-2"
-        />
+        BrilliantPro
         </button>
       </div>
       <div className="flex items-center justify-center">

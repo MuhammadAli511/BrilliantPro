@@ -16,7 +16,7 @@ const AdminNavbar = () => {
 
     const handleLogout = () => {
         localStorage.clear();
-        window.location.href = "/login";
+        window.location.href = "/admin/login";
     };
     const handleRedirection = () => {
         if (localStorage.getItem("token")) {
@@ -28,7 +28,7 @@ const AdminNavbar = () => {
 
     return (
         <nav className="flex items-center justify-between py-4 px-6 bg-white shadow-md">
-            <div className="flex items-center">
+            <div className="flex items-center font-bold text-2xl">
                 <button onClick={handleRedirection}>
                     BrilliantPro
                 </button>

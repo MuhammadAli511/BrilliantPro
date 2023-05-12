@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { logo } from "../assets";
-import { registerUser } from "../helper";
+import { useNavigate } from "react-router-dom";
+import { AdminNavbar } from "../../../components";
+import { updateUser } from "../../../helper";
 
-const SignUp = () => {
+const UpdateLearner = () => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: "",
     });
-
     const { firstName, lastName, email, password } = formData;
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -20,17 +19,17 @@ const SignUp = () => {
             [e.target.name]: e.target.value,
         }))
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await registerUser({ firstName, lastName, email, password });
+            const response = await updateUser({ firstName, lastName, email, password });
             if (!response) {
                 alert("Can not reach Server");
             }
             if (response.status === 200) {
-                navigate("/login");
+                alert("Learner Updated");
+                navigate("/admin/dashboard");
             }
             else {
                 alert(response.message);
@@ -39,28 +38,12 @@ const SignUp = () => {
             setIsLoading(false);
         }
     };
-
-    return (
-        <div>
-            <nav className="flex items-center justify-between py-4 px-6 bg-white shadow-md">
-                <div className="flex items-center">
-                    <Link to="/">
-                        <img
-                            src={logo}
-                            alt="Logo"
-                            className="h-8 w-28 mr-2"
-                        />
-                    </Link>
-                </div>
-                <div>
-                    <Link to="/login" className="flex items-center text-sm font-semibold py-2 px-3 rounded border border-gray-900 text-gray-900">
-                        Login
-                    </Link>
-                </div>
-            </nav>
-            <div className="mt-44 flex justify-center items-center flex-col overflow-y-hidden">
-                <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Create an Account</h1>
-                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[400px] mb-8 border border-gray-300">
+  return (
+    <>
+      <AdminNavbar />
+      <div className="mt-20 flex justify-center items-center flex-col overflow-y-hidden">
+                <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Update Learner</h1>
+                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[500px] mb-8 border border-gray-300">
                     <div className="mb-4">
                         <label htmlFor="firstName" className="block text-gray-700 font-semibold mb-2">First Name</label>
                         <input
@@ -109,12 +92,12 @@ const SignUp = () => {
                             required
                         />
                     </div>
-                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        {isLoading ? <div className="loader"></div> : "Create Account"}</button>
+                    <button type="submit" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
+                        {isLoading ? <div className="loader"></div> : "Update Learner"}</button>
                 </form>
             </div>
-        </div>
-    );
+    </>
+  );
 };
 
-export default SignUp;
+export default UpdateLearner;

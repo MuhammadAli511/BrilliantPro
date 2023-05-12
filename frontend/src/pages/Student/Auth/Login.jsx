@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logo } from "../assets";
-import { loginAdmin } from "../helper";
+import { logo } from "../../../assets";
+import { loginUser } from "../../../helper";
 
-const AdminLogin = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -23,14 +23,14 @@ const AdminLogin = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const response = await loginAdmin({ email, password });
+      const response = await loginUser({ email, password });
       if (!response) {
         alert("Can not reach Server");
       }
       if (response.status === 200) {
         localStorage.setItem('token', response.token);
         localStorage.setItem('email', response.email);
-        navigate("/products");
+        navigate("/studentDashboard");
       }
       else {
         alert(response.message);
@@ -43,9 +43,9 @@ const AdminLogin = () => {
   return (
     <div>
       <nav className="flex items-center justify-between py-4 px-6 bg-white shadow-md">
-        <div className="flex items-center">
+        <div className="flex items-center font-bold text-2xl">
           <Link to="/">
-            <img src={logo} alt="Logo" className="h-8 w-28 mr-2" />
+          BrilliantPro
           </Link>
         </div>
         <div>
@@ -59,14 +59,14 @@ const AdminLogin = () => {
       </nav>
       <div className="mt-44 flex justify-center items-center flex-col overflow-y-hidden">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">
-          Admin Log In
+          Student Log In
         </h1>
         <div className="flex justify-center items-center flex-col">
           <Link
-            to="/login"
+            to="/admin/login"
             className="flex items-center text-sm font-semibold py-2 px-3 text-gray-900 underline"
           >
-            Login as Student
+            Login as Admin
           </Link>
         </div>
         <form
@@ -116,4 +116,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default Login;

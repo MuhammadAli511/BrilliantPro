@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AdminNavbar } from "../components";
-import { registerUser } from "../helper";
+import { Link, useNavigate } from "react-router-dom";
+import { logo } from "../../../assets";
+import { registerUser } from "../../../helper";
 
-const AddLearner = () => {
+const SignUp = () => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: "",
     });
+
     const { firstName, lastName, email, password } = formData;
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const AddLearner = () => {
             [e.target.name]: e.target.value,
         }))
     }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -28,8 +30,7 @@ const AddLearner = () => {
                 alert("Can not reach Server");
             }
             if (response.status === 200) {
-                alert("Learner Added");
-                navigate("/admin/dashboard");
+                navigate("/login");
             }
             else {
                 alert(response.message);
@@ -38,12 +39,24 @@ const AddLearner = () => {
             setIsLoading(false);
         }
     };
-  return (
-    <>
-      <AdminNavbar />
-      <div className="mt-20 flex justify-center items-center flex-col overflow-y-hidden">
-                <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Add Learner</h1>
-                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[500px] mb-8 border border-gray-300">
+
+    return (
+        <div>
+            <nav className="flex items-center justify-between py-4 px-6 bg-white shadow-md">
+                <div className="flex items-center font-bold text-2xl">
+                    <Link to="/">
+                    BrilliantPro
+                    </Link>
+                </div>
+                <div>
+                    <Link to="/login" className="flex items-center text-sm font-semibold py-2 px-3 rounded border border-gray-900 text-gray-900">
+                        Login
+                    </Link>
+                </div>
+            </nav>
+            <div className="mt-44 flex justify-center items-center flex-col overflow-y-hidden">
+                <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Create an Account</h1>
+                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[400px] mb-8 border border-gray-300">
                     <div className="mb-4">
                         <label htmlFor="firstName" className="block text-gray-700 font-semibold mb-2">First Name</label>
                         <input
@@ -92,12 +105,12 @@ const AddLearner = () => {
                             required
                         />
                     </div>
-                    <button type="submit" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-                        {isLoading ? <div className="loader"></div> : "Add Learner"}</button>
+                    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        {isLoading ? <div className="loader"></div> : "Create Account"}</button>
                 </form>
             </div>
-    </>
-  );
+        </div>
+    );
 };
 
-export default AddLearner;
+export default SignUp;

@@ -1,0 +1,55 @@
+const asyncHandler = require('express-async-handler')
+const Admin = require('../models/admin')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
+
+function generateToken(email){
+    const token =  jwt.sign({email}, process.env.JWT_SECRET, {expiresIn: '30d'})
+    return token
+}
+
+const login = asyncHandler(async(req,res) => {
+    const {email,password} = await req.body
+    if (!email || !password) {
+        const data = {
+            status: 400,
+            message: 'Error: Please provide an email and password'
+        }
+        res.status(400).send(data)
+        return
+    }
+
+    const admin = await Admin.findOne({email})
+    if (!admin){
+        const data = {
+            status: 401,
+            message: 'Error: Invalid email or password'
+        }
+        res.status(401).send(data)
+        return
+    }
+
+    const passwordMatch = await bcrypt.compare(password, admin.password)
+    if (!passwordMatch){
+        const data = {
+            status: 401,
+            message: 'Error: Invalid email or password'
+        }
+        res.status(401).send(data)
+        return
+    }
+
+    const data = {
+        status: 200,
+        _id: admin._id,
+        email: admin.email,
+        token: generateToken(admin.email)
+    }
+    res.status(200).json(data)
+})
+
+
+module.exports = {
+    login,
+}

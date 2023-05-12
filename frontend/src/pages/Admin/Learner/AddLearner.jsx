@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AdminNavbar } from "../components";
-import { updateUser } from "../helper";
+import { AdminNavbar } from "../../../components";
+import { registerUser } from "../../../helper";
 
-const UpdateLearner = () => {
+const AddLearner = () => {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -23,12 +23,12 @@ const UpdateLearner = () => {
         e.preventDefault();
         try {
             setIsLoading(true);
-            const response = await updateUser({ firstName, lastName, email, password });
+            const response = await registerUser({ firstName, lastName, email, password });
             if (!response) {
                 alert("Can not reach Server");
             }
             if (response.status === 200) {
-                alert("Learner Updated");
+                alert("Learner Added");
                 navigate("/admin/dashboard");
             }
             else {
@@ -42,7 +42,7 @@ const UpdateLearner = () => {
     <>
       <AdminNavbar />
       <div className="mt-20 flex justify-center items-center flex-col overflow-y-hidden">
-                <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Update Learner</h1>
+                <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Add Learner</h1>
                 <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[500px] mb-8 border border-gray-300">
                     <div className="mb-4">
                         <label htmlFor="firstName" className="block text-gray-700 font-semibold mb-2">First Name</label>
@@ -93,11 +93,11 @@ const UpdateLearner = () => {
                         />
                     </div>
                     <button type="submit" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
-                        {isLoading ? <div className="loader"></div> : "Update Learner"}</button>
+                        {isLoading ? <div className="loader"></div> : "Add Learner"}</button>
                 </form>
             </div>
     </>
   );
 };
 
-export default UpdateLearner;
+export default AddLearner;

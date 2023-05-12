@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AdminNavbar } from "../components";
-import { updateCourse } from "../helper";
+import { AdminNavbar } from "../../../components";
+import { updateCourse } from "../../../helper";
 
 const UpdateCourse = () => {
     const [formData, setFormData] = useState({

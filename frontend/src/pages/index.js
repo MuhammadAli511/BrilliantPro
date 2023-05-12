@@ -1,16 +1,16 @@
-import AddCourse from './AddCourse';
-import AddLearner from './AddLearner';
-import AdminDashboard from './AdminDashboard';
-import AdminLogin from './AdminLogin';
-import DeleteCourse from './DeleteCourse';
-import DeleteLearner from './DeleteLearner';
-import GetLearner from './GetLearner';
+import AdminDashboard from './Admin/AdminDashboard';
+import AdminLogin from './Admin/Auth/AdminLogin';
+import AddCourse from './Admin/Course/AddCourse';
+import DeleteCourse from './Admin/Course/DeleteCourse';
+import UpdateCourse from './Admin/Course/UpdateCourse';
+import AddLearner from './Admin/Learner/AddLearner';
+import DeleteLearner from './Admin/Learner/DeleteLearner';
+import GetLearner from './Admin/Learner/GetLearner';
+import UpdateLearner from './Admin/Learner/UpdateLearner';
 import LandingPage from './LandingPage';
-import Login from './Login';
 import NotImplemented from './NotImplemented';
-import SignUp from './SignUp';
-import UpdateCourse from './UpdateCourse';
-import UpdateLearner from './UpdateLearner';
+import Login from './Student/Auth/Login';
+import SignUp from './Student/Auth/SignUp';
 export {
     NotImplemented,
     LandingPage,
