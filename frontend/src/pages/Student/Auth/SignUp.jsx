@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logo } from "../../../assets";
 import { registerUser } from "../../../helper";
 
 const SignUp = () => {
@@ -56,7 +55,7 @@ const SignUp = () => {
             </nav>
             <div className="mt-44 flex justify-center items-center flex-col overflow-y-hidden">
                 <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Create an Account</h1>
-                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[400px] mb-8 border border-gray-300">
+                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[700px] mb-8 border border-gray-300">
                     <div className="mb-4">
                         <label htmlFor="firstName" className="block text-gray-700 font-semibold mb-2">First Name</label>
                         <input
@@ -65,7 +64,7 @@ const SignUp = () => {
                             name="firstName"
                             value={firstName}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -77,7 +76,7 @@ const SignUp = () => {
                             name="lastName"
                             value={lastName}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -89,7 +88,7 @@ const SignUp = () => {
                             name="email"
                             value={email}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -101,7 +100,7 @@ const SignUp = () => {
                             name="password"
                             value={password}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logo } from "../../../assets";
 import { loginAdmin } from "../../../helper";
 
 const AdminLogin = () => {
@@ -28,7 +27,6 @@ const AdminLogin = () => {
         alert("Can not reach Server");
       }
       if (response.status === 200) {
-        localStorage.setItem('token', response.token);
         localStorage.setItem('email', response.email);
         navigate("/admin/dashboard");
       }
@@ -71,7 +69,7 @@ const AdminLogin = () => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[400px] mb-8 border border-gray-300"
+          className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[700px] mb-8 border border-gray-300"
         >
           <div className="mb-4">
             <label
@@ -86,7 +84,7 @@ const AdminLogin = () => {
               name="email"
               value={email}
               onChange={onChange}
-              className="border border-gray-300 p-2 rounded w-64"
+              className="border border-gray-300 p-2 rounded w-80"
               required
             />
           </div>
@@ -103,7 +101,7 @@ const AdminLogin = () => {
               name="password"
               value={password}
               onChange={onChange}
-              className="border border-gray-300 p-2 rounded w-64"
+              className="border border-gray-300 p-2 rounded w-80"
               required
             />
           </div>

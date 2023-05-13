@@ -52,7 +52,7 @@ const UpdateLearner = () => {
                             name="firstName"
                             value={firstName}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -64,7 +64,7 @@ const UpdateLearner = () => {
                             name="lastName"
                             value={lastName}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -76,7 +76,7 @@ const UpdateLearner = () => {
                             name="email"
                             value={email}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -88,7 +88,7 @@ const UpdateLearner = () => {
                             name="password"
                             value={password}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>

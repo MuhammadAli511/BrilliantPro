@@ -2,7 +2,6 @@ import React from "react";
 import { FaSearch, FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { logo } from "../assets";
 
 const Navbar = ({ onChange }) => {
   const cart = useSelector((state) => state.cart);

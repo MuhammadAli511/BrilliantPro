@@ -56,7 +56,7 @@ const UpdateCourse = () => {
                             name="title"
                             value={title}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -68,7 +68,7 @@ const UpdateCourse = () => {
                             name="author"
                             value={author}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -80,7 +80,7 @@ const UpdateCourse = () => {
                             name="price"
                             value={price}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -92,7 +92,7 @@ const UpdateCourse = () => {
                             name="description"
                             value={description}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -104,7 +104,7 @@ const UpdateCourse = () => {
                             name="category"
                             value={category}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -116,7 +116,7 @@ const UpdateCourse = () => {
                             name="image"
                             value={image}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -128,7 +128,7 @@ const UpdateCourse = () => {
                             name="startDate"
                             value={startDate}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>
@@ -140,7 +140,7 @@ const UpdateCourse = () => {
                             name="endDate"
                             value={endDate}
                             onChange={onChange}
-                            className="border border-gray-300 p-2 rounded w-64"
+                            className="border border-gray-300 p-2 rounded w-80"
                             required
                         />
                     </div>

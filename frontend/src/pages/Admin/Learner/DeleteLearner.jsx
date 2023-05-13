@@ -58,7 +58,7 @@ const DeleteLearner = () => {
               name="email"
               value={email}
               onChange={onChange}
-              className="border border-gray-300 p-2 rounded w-64"
+              className="border border-gray-300 p-2 rounded w-80"
               required
             />
           </div>

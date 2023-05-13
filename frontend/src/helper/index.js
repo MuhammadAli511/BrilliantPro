@@ -5,12 +5,17 @@ const getToken = () => {
   return localStorage.getItem('token');
 };
 
+const getEmail = () => {
+  return localStorage.getItem('email');
+};
+
 // Function to create headers with the JWT token
 const getHeaders = () => {
   return {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
     'Authorization': `Bearer ${getToken()}`,
+    'email': `${getEmail()}`
   };
 };
 
@@ -74,14 +79,15 @@ export const loginAdmin = async ({ email, password }) => {
 };
 
 // Function to add a course
-export const addCourse = async ({ title, author, price, description, category, image, startDate, endDate }) => {
+export const addCourse = async ({title, author, price, description, category, image, startDate, endDate, material, materialName, materialType}) => {
   const response = await fetch(`${API_URL}/courseRoute/add`, {
     method: "POST",
     headers: getHeaders(),
-    body: JSON.stringify({ title, author, price, description, category, image, startDate, endDate }),
+    body: JSON.stringify({ title, author, price, description, category, image, startDate, endDate, material, materialName, materialType }),
   });
   return await response.json();
 }
+
 
 // Function to update a course
 export const updateCourse = async ({ title, author, price, description, category, image, startDate, endDate }) => {

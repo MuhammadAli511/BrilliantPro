@@ -12,7 +12,8 @@ connectDB()
 const app = express()
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(express.static(path.join(__dirname, './public')));
 app.use(express.json())
 

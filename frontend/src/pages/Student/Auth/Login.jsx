@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { logo } from "../../../assets";
 import { loginUser } from "../../../helper";
 
 const Login = () => {
@@ -71,7 +70,7 @@ const Login = () => {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[400px] mb-8 border border-gray-300"
+          className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[700px] mb-8 border border-gray-300"
         >
           <div className="mb-4">
             <label
@@ -86,7 +85,7 @@ const Login = () => {
               name="email"
               value={email}
               onChange={onChange}
-              className="border border-gray-300 p-2 rounded w-64"
+              className="border border-gray-300 p-2 rounded w-80"
               required
             />
           </div>
@@ -103,7 +102,7 @@ const Login = () => {
               name="password"
               value={password}
               onChange={onChange}
-              className="border border-gray-300 p-2 rounded w-64"
+              className="border border-gray-300 p-2 rounded w-80"
               required
             />
           </div>

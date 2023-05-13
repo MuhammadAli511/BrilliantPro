@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { testimonials } from "../../constants";
-import { logo } from "../assets";
 
 const LandingPage = () => {
     return (
