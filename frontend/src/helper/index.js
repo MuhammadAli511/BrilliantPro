@@ -128,3 +128,32 @@ export const getCourse = async ({ title }) => {
   });
   return await response.json();
 }
+
+// Function to add a material
+export const addMaterial = async ({material, materialName, materialType, courses}) => {
+  const response = await fetch(`${API_URL}/materialRoute/add`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ material, materialName, materialType, courses }),
+  });
+  return await response.json();
+}
+
+// Function to get all materials
+export const getAllMaterials = async () => {
+  const response = await fetch(`${API_URL}/materialRoute/getAll`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+  return await response.json();
+}
+
+// Function to delete a material
+export const deleteMaterial = async ({ id }) => {
+  const response = await fetch(`${API_URL}/materialRoute/delete`, {
+    method: "DELETE",
+    headers: getHeaders(),
+    body: JSON.stringify({ id }),
+  });
+  return await response.json();
+}

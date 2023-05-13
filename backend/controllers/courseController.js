@@ -2,10 +2,7 @@ const asyncHandler = require('express-async-handler')
 const Course = require('../models/course')
 const Material = require('../models/material')
 const Audit = require('../models/audit')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 require('dotenv').config()
-const multer = require("multer");
 
 
 async function auditAdd(auditEmail, tableName, operationType, entityChanged) {

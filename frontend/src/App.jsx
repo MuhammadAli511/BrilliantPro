@@ -2,6 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import {
   AddCourse,
   AddLearner,
+  AddMaterial,
   AdminDashboard,
   AdminLogin,
   CourseDetails,
@@ -41,6 +42,8 @@ function App() {
         <Route path="/admin/courses/search" element={<SearchCourse />} />
         <Route path="/admin/courses/catalog" element={<GetCourses />} />
         <Route path="/admin/courses/catalog/details/:title" element={<CourseDetails />} />
+        {/* Material Routes */}
+        <Route path="/admin/materials/upload" element={<AddMaterial />} />
         {/* Not Implemented Routes */}
         <Route path="*" element={<NotImplemented />} />
       </Routes>

@@ -59,38 +59,38 @@ const CourseDetails = () => {
                     // show image in center of screen horizontally
                     className="w-1/2 h-64 mb-4 mx-auto"
                 />
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div class="bg-gray-50 p-6 shadow-md rounded-md">
-                        <h2 class="text-xl font-bold mb-2">Author:</h2>
-                        <p class="text-gray-500 mb-4">{course.author}</p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="bg-gray-50 p-6 shadow-md rounded-md">
+                        <h2 className="text-xl font-bold mb-2">Author:</h2>
+                        <p className="text-gray-500 mb-4">{course.author}</p>
 
-                        <h2 class="text-xl font-bold mb-2">Category:</h2>
-                        <p class="text-gray-500 mb-4">{course.category}</p>
+                        <h2 className="text-xl font-bold mb-2">Category:</h2>
+                        <p className="text-gray-500 mb-4">{course.category}</p>
 
-                        <h2 class="text-xl font-bold mb-2">Price:</h2>
-                        <p class="text-gray-500 mb-4">{course.price}</p>
+                        <h2 className="text-xl font-bold mb-2">Price:</h2>
+                        <p className="text-gray-500 mb-4">{course.price}</p>
 
-                        <h2 class="text-xl font-bold mb-2">Start Date:</h2>
-                        <p class="text-gray-500 mb-4">{course.startDate}</p>
+                        <h2 className="text-xl font-bold mb-2">Start Date:</h2>
+                        <p className="text-gray-500 mb-4">{course.startDate}</p>
 
-                        <h2 class="text-xl font-bold mb-2">End Date:</h2>
-                        <p class="text-gray-500 mb-4">{course.endDate}</p>
+                        <h2 className="text-xl font-bold mb-2">End Date:</h2>
+                        <p className="text-gray-500 mb-4">{course.endDate}</p>
                     </div>
 
-                    <div class="bg-gray-50 p-6 shadow-md rounded-md">
-                        <h2 class="text-xl font-bold mb-2">Description:</h2>
-                        <p class="text-gray-500 mb-4">{course.description}</p>
+                    <div className="bg-gray-50 p-6 shadow-md rounded-md">
+                        <h2 className="text-xl font-bold mb-2">Description:</h2>
+                        <p className="text-gray-500 mb-4">{course.description}</p>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 gap-8 mt-10 mx-auto w-1/2 ">
-                <div class="bg-gray-50 p-6 shadow-md rounded-md">
-                        <h2 class="text-xl font-bold mb-2">Materials:</h2>
-                        <div class="flex flex-wrap">
+                <div className="grid grid-cols-1 gap-8 mt-10 mx-auto w-1/2 ">
+                <div className="bg-gray-50 p-6 shadow-md rounded-md">
+                        <h2 className="text-xl font-bold mb-2">Materials:</h2>
+                        <div className="flex flex-wrap">
                             {course.materials &&
                                 course.materials.map((material, index) => (
                                     <div
                                         key={index}
-                                        class="flex items-center mb-4 mr-4 bg-gray-300 p-2 rounded-md justify-between"
+                                        className="flex items-center mb-4 mr-4 bg-gray-300 p-2 rounded-md justify-between"
                                     >
                                         <div className="flex flex-row items-center">
                                         {React.createElement(iconMap[material.materialType], {
@@ -103,7 +103,7 @@ const CourseDetails = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             download={material.materialName}
-                                            class="ml-2 text-blue-500 underline hover:text-blue-700"
+                                            className="ml-2 text-blue-500 underline hover:text-blue-700"
                                         >
                                             Download
                                         </a>

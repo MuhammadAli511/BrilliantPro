@@ -10,6 +10,7 @@ import AddLearner from './Admin/Learner/AddLearner';
 import DeleteLearner from './Admin/Learner/DeleteLearner';
 import GetLearner from './Admin/Learner/GetLearner';
 import UpdateLearner from './Admin/Learner/UpdateLearner';
+import AddMaterial from './Admin/Material/AddMaterial';
 import LandingPage from './LandingPage';
 import NotImplemented from './NotImplemented';
 import Login from './Student/Auth/Login';
@@ -30,6 +31,7 @@ export {
     DeleteCourse,
     GetCourses,
     CourseDetails,
-    SearchCourse
+    SearchCourse,
+    AddMaterial
 };
 

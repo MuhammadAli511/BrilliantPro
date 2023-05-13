@@ -91,7 +91,7 @@ const AdminNavbar = () => {
                         >
                             Courses
                             {showCoursesMenu && (
-                                <div className="absolute -right-20 top-full w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
+                                <div className="absolute right-[-72px] top-full w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
                                     <div className="py-1">
                                         <Link
                                             to="/admin/courses/add"
@@ -144,7 +144,7 @@ const AdminNavbar = () => {
                         >
                             Enrollments
                             {showEnrollmentsMenu && (
-                                <div className="absolute -right-20 top-full w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
+                                <div className="absolute right-[-58px] top-full w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
                                     <div className="py-1">
                                         <Link
                                             to="/admin/enrollments/enroll"
@@ -189,7 +189,7 @@ const AdminNavbar = () => {
                         >
                             Materials
                             {showMaterialsMenu && (
-                                <div className="absolute -right-20 top-full mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
+                                <div className="absolute right-[-64px] top-full w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
                                     <div className="py-1">
                                         <Link
                                             to="/admin/materials/upload"
@@ -220,7 +220,7 @@ const AdminNavbar = () => {
                         >
                             Assessments
                             {showAssessmentsMenu && (
-                                <div className="absolute -right-20 top-full w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
+                                <div className="absolute right-[-50px] top-full w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 focus:outline-none">
                                     <div className="py-1">
                                         <Link
                                             to="/admin/assessments/upload"
