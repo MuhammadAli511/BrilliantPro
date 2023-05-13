@@ -23,6 +23,18 @@ const UpdateCourse = () => {
             [e.target.name]: e.target.value,
         }));
     }
+    const handleImageUpload = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+            setFormData((prevState) => ({
+                ...prevState,
+                image: base64String,
+            }));
+        };
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -47,7 +59,7 @@ const UpdateCourse = () => {
             <AdminNavbar />
             <div className="mt-20 flex justify-center items-center flex-col overflow-y-hidden">
                 <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Update Course</h1>
-                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[500px] mb-8 border border-gray-300">
+                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[700px] mb-8 border border-gray-300">
                     <div className="mb-4">
                         <label htmlFor="title" className="block text-gray-700 font-semibold mb-2">Title</label>
                         <input
@@ -111,12 +123,12 @@ const UpdateCourse = () => {
                     <div className="mb-4">
                         <label htmlFor="image" className="block text-gray-700 font-semibold mb-2">Image</label>
                         <input
-                            type="text"
+                            type="file"
                             id="image"
                             name="image"
-                            value={image}
-                            onChange={onChange}
+                            onChange={handleImageUpload}
                             className="border border-gray-300 p-2 rounded w-80"
+                            accept="image/*"
                             required
                         />
                     </div>

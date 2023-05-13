@@ -43,7 +43,7 @@ const DeleteLearner = () => {
         </h1>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[500px] mb-8 border border-gray-300"
+          className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[700px] mb-8 border border-gray-300"
         >
           <div className="mb-4">
             <label

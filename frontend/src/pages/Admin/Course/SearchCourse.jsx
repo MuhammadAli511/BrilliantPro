@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AdminNavbar } from "../../../components";
 import { deleteCourse } from "../../../helper";
 
-const DeleteCourse = () => {
+const SearchCourse = () => {
   const [formData, setFormData] = useState({
     title: "",
   });
@@ -19,17 +19,7 @@ const DeleteCourse = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setIsLoading(true);
-      const response = await deleteCourse({ title });
-      if (!response) {
-        alert("Can not reach Server");
-      }
-      if (response.status === 200) {
-        alert("Course Deleted");
-        navigate("/admin/dashboard");
-      } else {
-        alert(response.message);
-      }
+      window.location.href = `/admin/courses/catalog/details/${title}`;
     } finally {
       setIsLoading(false);
     }
@@ -39,7 +29,7 @@ const DeleteCourse = () => {
       <AdminNavbar />
       <div className="mt-20 flex justify-center items-center flex-col overflow-y-hidden">
         <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">
-          Delete Course
+        Search Course
         </h1>
         <form
           onSubmit={handleSubmit}
@@ -69,7 +59,7 @@ const DeleteCourse = () => {
             {isLoading ? (
               <div className="loader"></div>
             ) : (
-              "Delete Course"
+              "Search Course"
             )}
           </button>
         </form>
@@ -78,4 +68,4 @@ const DeleteCourse = () => {
   );
 };
 
-export default DeleteCourse;
+export default SearchCourse;

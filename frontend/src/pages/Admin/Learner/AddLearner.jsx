@@ -43,7 +43,7 @@ const AddLearner = () => {
       <AdminNavbar />
       <div className="mt-20 flex justify-center items-center flex-col overflow-y-hidden">
                 <h1 className="text-4xl font-bold mb-8 text-center text-gray-700 tracking-wide">Add Learner</h1>
-                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[500px] mb-8 border border-gray-300">
+                <form onSubmit={handleSubmit} className="flex flex-col items-center bg-slate-50 p-8 rounded-lg shadow-md w-[700px] mb-8 border border-gray-300">
                     <div className="mb-4">
                         <label htmlFor="firstName" className="block text-gray-700 font-semibold mb-2">First Name</label>
                         <input

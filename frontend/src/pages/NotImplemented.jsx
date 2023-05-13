@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import { Navbar } from "../components";
 
 const NotImplemented = () => {
 
 
+    function redirection(){
+        if (localStorage.getItem("token") === null) {
+            navigate("/admin/login");
+        } else {
+            navigate("/admin/dashboard");
+        }
+    }
 
 
     return (
@@ -16,6 +24,10 @@ const NotImplemented = () => {
                 <p className="text-lg mt-4">
                     Sorry, we couldn't find the page you're looking for.
                 </p>
+                <Link to="/admin/dashboard" className="border border-blue-500 text-blue-500 px-4 py-2 rounded-full mt-6 inline-block">
+                    Back to Home
+                </Link>
+
             </div>
         </div>
         </>

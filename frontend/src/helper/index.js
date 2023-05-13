@@ -120,8 +120,9 @@ export const getAllCourses = async () => {
 
 // Function to get a course
 export const getCourse = async ({ title }) => {
+  console.log(title);
   const response = await fetch(`${API_URL}/courseRoute/get/`, {
-    method: "GET",
+    method: "POST",
     headers: getHeaders(),
     body: JSON.stringify({ title }),
   });

@@ -1,7 +1,10 @@
 import AdminDashboard from './Admin/AdminDashboard';
 import AdminLogin from './Admin/Auth/AdminLogin';
 import AddCourse from './Admin/Course/AddCourse';
+import CourseDetails from './Admin/Course/CourseDetails';
 import DeleteCourse from './Admin/Course/DeleteCourse';
+import GetCourses from './Admin/Course/GetCourses';
+import SearchCourse from './Admin/Course/SearchCourse';
 import UpdateCourse from './Admin/Course/UpdateCourse';
 import AddLearner from './Admin/Learner/AddLearner';
 import DeleteLearner from './Admin/Learner/DeleteLearner';
@@ -24,6 +27,9 @@ export {
     GetLearner,
     AddCourse,
     UpdateCourse,
-    DeleteCourse
+    DeleteCourse,
+    GetCourses,
+    CourseDetails,
+    SearchCourse
 };
 

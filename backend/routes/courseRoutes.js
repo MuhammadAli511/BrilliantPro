@@ -21,7 +21,7 @@ router.delete('/delete',deleteCourse)
 // GET  api/courseRoute/getAll/
 router.get('/getAll',getAllCourses)
 
-// GET  api/courseRoute/get/
-router.get('/get',getCourse)
+// POST  api/courseRoute/get/
+router.post('/get',getCourse)
 
 module.exports = router

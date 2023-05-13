@@ -216,15 +216,24 @@ const getCourse = asyncHandler(async (req, res) => {
         return
     }
     const course = await Course.findOne({ title })
-    if (course) {
+    // get all materials where title is present in courseTitles array
+    const materials = await Material.find({ courseTitles: { $in: [title] } })
+
+    
+    if (course && materials) {
         const data = {
             status: 200,
-            course
+            course,
+            materials
         }
         auditAdd(auditEmail, 'Course', 'Get', title);
         res.status(200).json(data)
         return
     }
+    
+
+
+
     else {
         const data = {
             status: 400,

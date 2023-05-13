@@ -4,12 +4,15 @@ import {
   AddLearner,
   AdminDashboard,
   AdminLogin,
+  CourseDetails,
   DeleteCourse,
   DeleteLearner,
+  GetCourses,
   GetLearner,
   LandingPage,
   Login,
   NotImplemented,
+  SearchCourse,
   SignUp,
   UpdateCourse,
   UpdateLearner
@@ -35,8 +38,9 @@ function App() {
         <Route path="/admin/courses/add" element={<AddCourse />} />
         <Route path="/admin/courses/remove" element={<DeleteCourse />} />
         <Route path="/admin/courses/update" element={<UpdateCourse />} />
-        {/* <Route path="/admin/courses/search" element={<GetCourse />} /> */}
-        {/* <Route path="/admin/courses/catalog" element={<GetAllCourses />} /> */}
+        <Route path="/admin/courses/search" element={<SearchCourse />} />
+        <Route path="/admin/courses/catalog" element={<GetCourses />} />
+        <Route path="/admin/courses/catalog/details/:title" element={<CourseDetails />} />
         {/* Not Implemented Routes */}
         <Route path="*" element={<NotImplemented />} />
       </Routes>
