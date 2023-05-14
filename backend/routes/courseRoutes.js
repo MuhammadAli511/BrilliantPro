@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {addCourse, updateCourse, deleteCourse, getAllCourses, getCourse} = require('../controllers/courseController')
+const {addCourse, updateCourse, deleteCourse, getAllCourses, getCourse, getCourseCount} = require('../controllers/courseController')
 // const {requireAuth} = require('../middleware/auth')
 
 
@@ -23,5 +23,8 @@ router.get('/getAll',getAllCourses)
 
 // POST  api/courseRoute/get/
 router.post('/get',getCourse)
+
+// GET api/courseRoute/getCourseCount/
+router.get('/getCourseCount',getCourseCount)
 
 module.exports = router

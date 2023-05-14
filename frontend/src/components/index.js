@@ -1,7 +1,7 @@
 import AdminNavbar from './AdminNavbar';
-import Navbar from './Navbar';
+import StudentNavbar from './StudentNavbar';
 export {
-    Navbar,
-    AdminNavbar
+    AdminNavbar,
+    StudentNavbar
 };
 

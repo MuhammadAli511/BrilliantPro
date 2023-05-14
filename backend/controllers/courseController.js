@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler')
 const Course = require('../models/course')
 const Material = require('../models/material')
 const Audit = require('../models/audit')
+const Enrollments = require('../models/enrollments')
 require('dotenv').config()
 
 
@@ -201,6 +202,13 @@ const getAllCourses = asyncHandler(async (req, res) => {
     }
 })
 
+// const getAllStudentCourses = asyncHandler(async (req, res) => {
+//     const auditEmail = req.header('email');
+//     const studentEmail = req.body.studentEmail
+//     const courses = await Course.find({})
+//     const enrollments = await Enrollments.find({ studentEmail })
+
+
 const getCourse = asyncHandler(async (req, res) => {
     const auditEmail = req.header('email');
     const title = await req.body.title
@@ -241,4 +249,21 @@ const getCourse = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { addCourse, updateCourse, deleteCourse, getAllCourses, getCourse }
+const getCourseCount = asyncHandler(async (req, res) => {
+    const auditEmail = req.header('email');
+    const courseCount = await Course.countDocuments({})
+    if (courseCount) {
+        res.status(200).json({
+            status: 200,
+            courseCount: courseCount
+        });
+        return;
+    } else {
+        res.status(400).json({
+            status: 400,
+            courseCount: 0
+        });
+    }
+})
+
+module.exports = { addCourse, updateCourse, deleteCourse, getAllCourses, getCourse, getCourseCount }

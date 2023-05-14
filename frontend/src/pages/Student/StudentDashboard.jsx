@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { FaBook, FaCertificate, FaUserCheck, FaUsers } from "react-icons/fa";
-import { AdminNavbar } from "../../components";
+import { StudentNavbar } from "../../components";
 import { getCourseCount, getMaterialCount, getStudentCount } from '../../helper';
 
-const AdminDashboard = () => {
+const StudentDashboard = () => {
     const [activeLearners, setActiveLearners] = useState(0);
     const [totalLearners, setTotalLearners] = useState(0);
     const [totalCourses, setTotalCourses] = useState(0);
@@ -32,30 +32,17 @@ const AdminDashboard = () => {
 
     return (
         <>
-            <AdminNavbar />
+            <StudentNavbar />
             <div className="container mx-auto mt-20">
-                <div className="grid grid-cols-4 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                     <div className="card mb-3 bg-red-300 w-full py-10">
-                        <div className="card-body text-white">
-                            <div className="flex items-center">
-                                <div className="mx-4">
-                                    <FaUserCheck size={40} />
-                                </div>
-                                <div>
-                                    <h5 className="card-title mb-2 font-bold text-lg">Total Materials</h5>
-                                    <p className="text-2xl font-bold">{activeLearners}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card mb-3 bg-blue-300 w-full py-10">
                         <div className="card-body text-white">
                             <div className="flex items-center">
                                 <div className="mx-4">
                                     <FaUsers size={40} />
                                 </div>
                                 <div>
-                                    <h5 className="card-title mb-2 font-bold text-lg">Total Learners</h5>
+                                    <h5 className="card-title mb-2 font-bold text-lg">Completed Courses</h5>
                                     <p className="text-2xl font-bold">{totalLearners}</p>
                                 </div>
                             </div>
@@ -69,7 +56,7 @@ const AdminDashboard = () => {
                                     <FaBook size={40} />
                                 </div>
                                 <div>
-                                    <h5 className="card-title mb-2 font-bold text-lg">Total Courses</h5>
+                                    <h5 className="card-title mb-2 font-bold text-lg">Ongoing Courses</h5>
                                     <p className="text-2xl font-bold">{totalCourses}</p>
                                 </div>
                             </div>
@@ -82,7 +69,7 @@ const AdminDashboard = () => {
                                     <FaCertificate size={40} />
                                 </div>
                                 <div>
-                                    <h5 className="card-title mb-2 font-bold text-lg">Certificates Issued</h5>
+                                    <h5 className="card-title mb-2 font-bold text-lg">Certificates Earned</h5>
                                     <p className="text-2xl font-bold">{totalCertificates}</p>
                                 </div>
                             </div>
@@ -98,4 +85,4 @@ const AdminDashboard = () => {
     );
 };
 
-export default AdminDashboard;
+export default StudentDashboard;

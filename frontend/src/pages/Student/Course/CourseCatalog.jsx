@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AdminNavbar } from "../../../components";
-import { getAllCourses } from "../../../helper";
+import { StudentNavbar } from "../../../components";
+import { getAllStudentCourses } from "../../../helper";
 
 const CourseCard = ({ course }) => {
   const { title, author, category, price, image } = course;
@@ -22,14 +22,15 @@ const CourseCard = ({ course }) => {
   );
 };
 
-const GetCourses = () => {
+const CourseCatalog = () => {
   const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchCourses = async () => {
       setIsLoading(true);
-      const response = await getAllCourses();
+      const email = localStorage.getItem("email");
+      const response = await getAllStudentCourses(email);
       if (response.status === 200) {
         setCourses(response.courses);
       }
@@ -40,7 +41,7 @@ const GetCourses = () => {
 
   return (
     <>
-        <AdminNavbar />
+        <StudentNavbar />
       <h1 className="text-4xl font-bold mt-20 mb-8 text-center text-gray-700 tracking-wide">
         All Courses
       </h1>
@@ -59,4 +60,4 @@ const GetCourses = () => {
   );
 };
 
-export default GetCourses;
+export default CourseCatalog;

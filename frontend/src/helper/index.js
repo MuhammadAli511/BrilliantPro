@@ -118,9 +118,17 @@ export const getAllCourses = async () => {
   return await response.json();
 }
 
+export const getAllStudentCourses = async (studentEmail) => {
+  const response = await fetch(`${API_URL}/courseRoute/getAllStudentCourses`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ studentEmail }),
+  });
+  return await response.json();
+}
+
 // Function to get a course
 export const getCourse = async ({ title }) => {
-  console.log(title);
   const response = await fetch(`${API_URL}/courseRoute/get/`, {
     method: "POST",
     headers: getHeaders(),
@@ -149,11 +157,77 @@ export const getAllMaterials = async () => {
 }
 
 // Function to delete a material
-export const deleteMaterial = async ({ id }) => {
+export const deleteMaterial = async ({ _id }) => {
   const response = await fetch(`${API_URL}/materialRoute/delete`, {
     method: "DELETE",
     headers: getHeaders(),
-    body: JSON.stringify({ id }),
+    body: JSON.stringify({ _id }),
+  });
+  return await response.json();
+}
+
+// Function to get course count
+export const getCourseCount = async () => {
+  const response = await fetch(`${API_URL}/courseRoute/getCourseCount`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+  return await response.json();
+}
+
+// Function to get student count
+export const getStudentCount = async () => {
+  const response = await fetch(`${API_URL}/studentRoute/getStudentCount`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+  return await response.json();
+}
+
+// Function to get material count
+export const getMaterialCount = async () => {
+  const response = await fetch(`${API_URL}/materialRoute/getMaterialCount`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+  return await response.json();
+}
+
+// Function to add enrollment
+export const addEnrollment = async ({studentEmail, courseTitle}) => {
+  const response = await fetch(`${API_URL}/enrollmentRoute/add`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ studentEmail, courseTitle }),
+  });
+  return await response.json();
+}
+
+// Function to delete enrollment
+export const deleteEnrollment = async ({studentEmail, courseTitle}) => {
+  const response = await fetch(`${API_URL}/enrollmentRoute/delete`, {
+    method: "DELETE",
+    headers: getHeaders(),
+    body: JSON.stringify({ studentEmail, courseTitle }),
+  });
+  return await response.json();
+}
+
+// Function to get all enrollments
+export const getAllEnrollments = async () => {
+  const response = await fetch(`${API_URL}/enrollmentRoute/getAll`, {
+    method: "GET",
+    headers: getHeaders(),
+  });
+  return await response.json();
+}
+
+// Function to get all enrollments for a course
+export const getAllCourseEnrollments = async ({courseTitle}) => {
+  const response = await fetch(`${API_URL}/enrollmentRoute/getCourseEnrollments`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ courseTitle }),
   });
   return await response.json();
 }

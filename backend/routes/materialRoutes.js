@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { addMaterial } = require('../controllers/materialController')
+const { addMaterial,  getAllMaterial, deleteMaterial, getMaterialCount } = require('../controllers/materialController')
 
 // GET  api/materialRoute/status/
 router.get('/status',(req,res) => {
@@ -9,5 +9,14 @@ router.get('/status',(req,res) => {
 
 // POST  api/materialRoute/add/
 router.post('/add',addMaterial)
+
+// GET api/materialRoute/getAll/
+router.get('/getAll',getAllMaterial)
+
+// DELETE api/materialRoute/delete/
+router.delete('/delete',deleteMaterial)
+
+// GET api/materialRoute/getMaterialCount/
+router.get('/getMaterialCount',getMaterialCount)
 
 module.exports = router

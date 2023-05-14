@@ -185,7 +185,7 @@ const AddCourse = () => {
                         />
                     </div>
 
-                    <button type="submit" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
+                    <button type="submit" className="bg-indigo-700 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded">
                         {isLoading ? <div className="loader"></div> : "Add Course"}</button>
                 </form>
             </div>

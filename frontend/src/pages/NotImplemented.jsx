@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
-import { Navbar } from "../components";
+import { AdminNavbar } from "../components";
 
 const NotImplemented = () => {
 
 
-    function redirection(){
-        if (localStorage.getItem("token") === null) {
-            navigate("/admin/login");
-        } else {
-            navigate("/admin/dashboard");
-        }
-    }
-
-
     return (
         <>
-        <Navbar />
+        <AdminNavbar />
         <div className="flex h-screen bg-gray-200">
             <div className="m-auto text-center">
                 <h1 className="text-5xl font-bold">404</h1>
@@ -24,7 +15,7 @@ const NotImplemented = () => {
                 <p className="text-lg mt-4">
                     Sorry, we couldn't find the page you're looking for.
                 </p>
-                <Link to="/admin/dashboard" className="border border-blue-500 text-blue-500 px-4 py-2 rounded-full mt-6 inline-block">
+                <Link to="/" className="border border-blue-500 text-blue-500 px-4 py-2 rounded-full mt-6 inline-block">
                     Back to Home
                 </Link>
 

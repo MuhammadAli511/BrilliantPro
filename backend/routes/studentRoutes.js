@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {signup, login, deleteStudent, updateStudent, getStudent} = require('../controllers/studentController')
+const {signup, login, deleteStudent, updateStudent, getStudent, getStudentCount} = require('../controllers/studentController')
 const {requireAuth} = require('../middleware/auth')
 
 // GET  api/studentRoute/status/
@@ -22,6 +22,9 @@ router.put('/update',updateStudent)
 
 // GET  api/studentRoute/get/
 router.get('/get',getStudent)
+
+// GET api/studentRoute/getStudentCount/
+router.get('/getStudentCount',getStudentCount)
 
 
 module.exports = router

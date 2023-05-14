@@ -236,10 +236,34 @@ const getStudent = asyncHandler(async(req,res) => {
     }
 })
 
+const getStudentCount = asyncHandler(async(req,res) => {
+    const auditEmail = req.header('email');
+    const studentsCount  = await Student.countDocuments({})
+    if (studentsCount){
+        const data = {
+            status: 200,
+            studentsCount: studentsCount
+        }
+        auditAdd(auditEmail, 'Student', 'GET', 'Count')
+        res.status(200).json(data)
+        return
+    }
+    else{
+        const data = {
+            status: 400,
+            studentsCount: 0
+        }
+        res.status(400).send(data)
+        return
+    }
+})
+
+
 module.exports = {
     signup,
     login,
     deleteStudent,
     updateStudent,
-    getStudent
+    getStudent,
+    getStudentCount
 }

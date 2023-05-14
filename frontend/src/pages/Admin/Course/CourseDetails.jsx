@@ -1,121 +1,231 @@
 import React, { useEffect, useState } from "react";
-import { FaFileAlt, FaFileArchive, FaFileAudio, FaFileExcel, FaFileImage, FaFilePdf, FaFilePowerpoint, FaFileVideo, FaFileWord } from 'react-icons/fa';
+import { FaFileAlt, FaFileArchive, FaFileAudio, FaFileExcel, FaFileImage, FaFilePdf, FaFilePowerpoint, FaFileVideo, FaFileWord, FaUserCircle } from 'react-icons/fa';
+import { FiFileText, FiInfo, FiUsers } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
+import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { AdminNavbar } from "../../../components";
-import { getCourse } from "../../../helper";
+import { getAllCourseEnrollments, getCourse } from "../../../helper";
 
 const CourseDetails = () => {
-    const iconMap = {
-        'application/vnd.openxmlformats-officedocument.presentationml.presentation': FaFilePowerpoint,
-        'application/vnd.openxmlformats-officedocument.wordprocessingml.document': FaFileWord,
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': FaFileExcel,
-        'application/vnd.ms-powerpoint': FaFilePowerpoint,
-        'application/vnd.ms-word': FaFileWord,
-        'application/pdf': FaFilePdf,
-        'image/png': FaFileImage,
-        'image/jpeg': FaFileImage,
-        'image/jpg': FaFileImage,
-        'image/gif': FaFileImage,
-        'image/bmp': FaFileImage,
-        'image/webp': FaFileImage,
-        'application/msword': FaFileWord,
-        'application/vnd.ms-excel': FaFileExcel,
-        'text/plain': FaFileAlt,
-        'application/zip': FaFileArchive,
-        'audio/mpeg': FaFileAudio,
-        'video/mp4': FaFileVideo,
-        'audio/wav': FaFileAudio,
-        'audio/mp3': FaFileAudio,
-        'audio/ogg': FaFileAudio,
-        'video/ogg': FaFileVideo,
-        'video/webm': FaFileVideo,
-        'video/quicktime': FaFileVideo,
-        'video/3gpp': FaFileVideo,
-        'video/3gpp2': FaFileVideo,
+  const iconMap = {
+    'application/vnd.openxmlformats-officedocument.presentationml.presentation': FaFilePowerpoint,
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': FaFileWord,
+    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': FaFileExcel,
+    'application/vnd.ms-powerpoint': FaFilePowerpoint,
+    'application/vnd.ms-word': FaFileWord,
+    'application/pdf': FaFilePdf,
+    'image/png': FaFileImage,
+    'image/jpeg': FaFileImage,
+    'image/jpg': FaFileImage,
+    'image/gif': FaFileImage,
+    'image/bmp': FaFileImage,
+    'image/webp': FaFileImage,
+    'application/msword': FaFileWord,
+    'application/vnd.ms-excel': FaFileExcel,
+    'text/plain': FaFileAlt,
+    'application/zip': FaFileArchive,
+    'audio/mpeg': FaFileAudio,
+    'video/mp4': FaFileVideo,
+    'audio/wav': FaFileAudio,
+    'audio/mp3': FaFileAudio,
+    'audio/ogg': FaFileAudio,
+    'video/ogg': FaFileVideo,
+    'video/webm': FaFileVideo,
+    'video/quicktime': FaFileVideo,
+    'video/3gpp': FaFileVideo,
+    'video/3gpp2': FaFileVideo,
+  };
+  const [course, setCourse] = useState({});
+  const [enrollments, setEnrollments] = useState([]);
+  const { title } = useParams();
+
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const response = await getCourse({ title });
+      response.course.materials = response.materials;
+      setCourse(response.course);
     };
-    const [course, setCourse] = useState({});
-    const { title } = useParams();
+    const fetchLearners = async () => {
+      const courseTitle = title;
+      const response = await getAllCourseEnrollments({ courseTitle });
+      console.log(response.enrollments);
+      setEnrollments(response.enrollments);
+    };
+    fetchProduct();
+    fetchLearners();
+  }, [title]);
+
+  function CourseDetail({ course }) {
+    return (
+      <>
+        <img
+          src={`data:image/jpeg;base64,${course.image}`}
+          alt={course.title}
+          className="w-1/2 h-64 mb-4 mx-auto"
+        />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="bg-gray-50 p-6 shadow-md rounded-md">
+            <h2 className="text-xl font-bold mb-2">Author:</h2>
+            <p className="text-gray-500 mb-4">{course.author}</p>
+
+            <h2 className="text-xl font-bold mb-2">Category:</h2>
+            <p className="text-gray-500 mb-4">{course.category}</p>
+
+            <h2 className="text-xl font-bold mb-2">Price:</h2>
+            <p className="text-gray-500 mb-4">{course.price}</p>
+
+            <h2 className="text-xl font-bold mb-2">Start Date:</h2>
+            <p className="text-gray-500 mb-4">{course.startDate}</p>
+
+            <h2 className="text-xl font-bold mb-2">End Date:</h2>
+            <p className="text-gray-500 mb-4">{course.endDate}</p>
+          </div>
+
+          <div className="bg-gray-50 p-6 shadow-md rounded-md">
+            <h2 className="text-xl font-bold mb-2">Description:</h2>
+            <p className="text-gray-500 mb-4">{course.description}</p>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  function CourseMaterials({ course }) {
+    return (
+      <div className="bg-gray-50 p-6 shadow-md rounded-md">
+        <h2 className="text-xl font-bold mb-2">Materials:</h2>
+        <div className="flex flex-col">
+          {course.materials &&
+            course.materials.map((material, index) => (
+              <div
+                key={index}
+                className="flex items-center mb-4 mr-4 bg-gray-300 p-2 rounded-md justify-between"
+              >
+                <div className="flex flex-row items-center">
+                  {React.createElement(iconMap[material.materialType], {
+                    className: 'text-blue-500 mr-2',
+                  })}
+                  <p>{material.materialName}</p>
+                </div>
+                <a
+                  href={`data:${material.materialType};base64,${material.material}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download={material.materialName}
+                  className="ml-2 text-blue-500 underline hover:text-blue-700"
+                >
+                  Download
+                </a>
+              </div>
+            ))}
+        </div>
+      </div>
+    );
+  }
+
+  function CourseLearners({ enrollments }) {
+    return (
+      <div className="bg-gray-50 p-6 shadow-md rounded-md">
+        <h2 className="text-xl font-bold mb-2">Learners:</h2>
+        <div className="flex flex-col">
+          {/* print enrollments size */}
+          {enrollments &&
+            enrollments.map((learner, index) => (
+              <div
+                key={index}
+                className="flex items-center mb-4 mr-4 bg-gray-300 p-2 rounded-md justify-between"
+              >
+                <div className="flex flex-row items-center">
+                  <FaUserCircle className="text-blue-500 mr-2" />
+                  <p>{learner.studentEmail}</p>
+                </div>
+                <div className="flex flex-row items-center">
+                  <p className="mr-2">{20}%</p>
+                  <div className="bg-gray-500 h-2 w-32 rounded-lg overflow-hidden">
+                    <div
+                      className="bg-blue-500 h-full"
+                      style={{ width: `${20}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+    );
+  }
+  
 
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            const response = await getCourse({ title });
-            response.course.materials = response.materials;
-            setCourse(response.course);
-        };
-        fetchProduct();
-    }, [title]);
 
-
+  function CourseTabs({ course }) {
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     return (
-        <>
-            <AdminNavbar />
-            <div className="container mx-auto px-4 py-8">
-                <h1 className="text-4xl font-bold mb-4">{course.title}</h1>
-                <img
-                    src={`data:image/jpeg;base64,${course.image}`}
-                    alt={course.title}
-                    // show image in center of screen horizontally
-                    className="w-1/2 h-64 mb-4 mx-auto"
-                />
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div className="bg-gray-50 p-6 shadow-md rounded-md">
-                        <h2 className="text-xl font-bold mb-2">Author:</h2>
-                        <p className="text-gray-500 mb-4">{course.author}</p>
+      <div>
+        <Tabs
+          selectedIndex={selectedIndex}
+          onSelect={(index) => setSelectedIndex(index)}
+          className="border-b border-gray-200 rounded-t-lg"
+        >
+          <TabList className="flex">
+            <Tab
+              className={`${selectedIndex === 0
+                  ? "bg-indigo-600 text-white"
+                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                } py-4 px-6 font-medium mb-10 rounded-tl-lg`}
+            >
+              <FiInfo className="inline-block w-6 h-6 mr-2" />
+              Details
+            </Tab>
+            <Tab
+              className={`${selectedIndex === 1
+                  ? "bg-indigo-600 text-white"
+                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                } py-4 px-6 font-medium mb-10 rounded-tl-lg`}
+            >
+              <FiFileText className="inline-block w-6 h-6 mr-2" />
+              Materials
+            </Tab>
+            <Tab
+              className={`${selectedIndex === 2
+                  ? "bg-indigo-600 text-white"
+                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                } py-4 px-6 font-medium mb-10 rounded-tl-lg`}
+            >
+              <FiUsers className="inline-block w-6 h-6 mr-2" />
+              Learners
+            </Tab>
+          </TabList>
 
-                        <h2 className="text-xl font-bold mb-2">Category:</h2>
-                        <p className="text-gray-500 mb-4">{course.category}</p>
-
-                        <h2 className="text-xl font-bold mb-2">Price:</h2>
-                        <p className="text-gray-500 mb-4">{course.price}</p>
-
-                        <h2 className="text-xl font-bold mb-2">Start Date:</h2>
-                        <p className="text-gray-500 mb-4">{course.startDate}</p>
-
-                        <h2 className="text-xl font-bold mb-2">End Date:</h2>
-                        <p className="text-gray-500 mb-4">{course.endDate}</p>
-                    </div>
-
-                    <div className="bg-gray-50 p-6 shadow-md rounded-md">
-                        <h2 className="text-xl font-bold mb-2">Description:</h2>
-                        <p className="text-gray-500 mb-4">{course.description}</p>
-                    </div>
-                </div>
-                <div className="grid grid-cols-1 gap-8 mt-10 mx-auto w-1/2 ">
-                <div className="bg-gray-50 p-6 shadow-md rounded-md">
-                        <h2 className="text-xl font-bold mb-2">Materials:</h2>
-                        <div className="flex flex-wrap">
-                            {course.materials &&
-                                course.materials.map((material, index) => (
-                                    <div
-                                        key={index}
-                                        className="flex items-center mb-4 mr-4 bg-gray-300 p-2 rounded-md justify-between"
-                                    >
-                                        <div className="flex flex-row items-center">
-                                        {React.createElement(iconMap[material.materialType], {
-                                            className: "text-blue-500 mr-2",
-                                        })}
-                                        <p>{material.materialName}</p>
-                                        </div>
-                                        <a
-                                            href={`data:${material.materialType};base64,${material.material}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            download={material.materialName}
-                                            className="ml-2 text-blue-500 underline hover:text-blue-700"
-                                        >
-                                            Download
-                                        </a>
-                                    </div>
-                                ))}
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </>
+          <TabPanel className="bg-white">
+            <CourseDetail course={course} />
+          </TabPanel>
+          <TabPanel className="bg-white">
+            <CourseMaterials course={course} />
+          </TabPanel>
+          <TabPanel className="bg-white">
+            <CourseLearners enrollments={enrollments} />
+          </TabPanel>
+        </Tabs>
+      </div>
     );
-};
+  }
+
+
+
+  return (
+    <>
+      <AdminNavbar />
+      <div className="container mx-auto px-4">
+        <div className="py-8">
+          <h1 className="text-4xl font-bold mb-4">{course.title}</h1>
+          <CourseTabs course={course} />
+        </div>
+      </div>
+    </>
+  )
+}
 
 export default CourseDetails;

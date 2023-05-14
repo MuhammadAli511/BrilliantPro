@@ -31,6 +31,24 @@ async function auditAdd(auditEmail, tableName, operationType, entityChanged) {
     }
 }
 
+const getAllMaterial = asyncHandler(async (req, res) => {
+    const material = await Material.find({})
+    if (material) {
+        res.status(200).json({
+            status: 200,
+            materials: material
+        });
+        return;
+    } else {
+        res.status(400).json({
+            status: 400,
+            message: "Materials not found"
+        });
+        return;
+    }
+});
+
+
 const addMaterial = asyncHandler(async (req, res) => {
 
     const auditEmail = req.header("email");
@@ -73,6 +91,56 @@ const addMaterial = asyncHandler(async (req, res) => {
     }
 });
 
+const deleteMaterial = asyncHandler(async (req, res) => {
+    const auditEmail = req.header("email");
+    const {
+        _id
+    } = req.body;
+
+    if (!_id) {
+        res.status(400).json({
+            status: 400,
+            message: "Please fill all fields"
+        });
+        return;
+    }
+    const material = await Material.findByIdAndDelete(_id)
+
+    if (material) {
+        auditAdd(auditEmail, "Material", "Delete", material.materialName);
+        res.status(200).json({
+            status: 200,
+            message: "Material Deleted"
+        });
+        return;
+    } else {
+        res.status(400).json({
+            status: 400,
+            message: "Material not Deleted"
+        });
+        return;
+    }
+});
+
+const getMaterialCount = asyncHandler(async (req, res) => {
+    const materialCount = await Material.countDocuments({})
+    if (materialCount) {
+        res.status(200).json({
+            status: 200,
+            materialCount: materialCount
+        });
+        return;
+    } else {
+        res.status(400).json({
+            status: 400,
+            materialCount: 0
+        });
+    }
+})
+
 module.exports = {
-    addMaterial
+    addMaterial,
+    getAllMaterial,
+    deleteMaterial,
+    getMaterialCount
 }

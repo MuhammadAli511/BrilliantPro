@@ -160,20 +160,6 @@ const AdminNavbar = () => {
                                         >
                                             Unenroll Learner
                                         </Link>
-                                        <Link
-                                            to="/admin/enrollments/viewall"
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                            onClick={toggleEnrollmentsMenu}
-                                        >
-                                            View All Enrollments
-                                        </Link>
-                                        <Link
-                                            to="/admin/enrollments/viewcourseenrollments"
-                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
-                                            onClick={toggleEnrollmentsMenu}
-                                        >
-                                            View Course Enrollments
-                                        </Link>
                                     </div>
                                 </div>
                             )}

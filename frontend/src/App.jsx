@@ -1,12 +1,15 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import {
   AddCourse,
+  AddEnrollment,
   AddLearner,
   AddMaterial,
   AdminDashboard,
   AdminLogin,
+  CourseCatalog,
   CourseDetails,
   DeleteCourse,
+  DeleteEnrollment,
   DeleteLearner,
   GetCourses,
   GetLearner,
@@ -15,8 +18,10 @@ import {
   NotImplemented,
   SearchCourse,
   SignUp,
+  StudentDashboard,
   UpdateCourse,
-  UpdateLearner
+  UpdateLearner,
+  ViewMaterials
 } from "./pages";
 function App() {
   
@@ -27,6 +32,8 @@ function App() {
         {/* Student Routes */}
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/student/dashboard" element={<StudentDashboard />} />
+        <Route path="/student/courses/catalog" element={<CourseCatalog />} />
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
@@ -44,6 +51,10 @@ function App() {
         <Route path="/admin/courses/catalog/details/:title" element={<CourseDetails />} />
         {/* Material Routes */}
         <Route path="/admin/materials/upload" element={<AddMaterial />} />
+        <Route path="/admin/materials/view" element={<ViewMaterials />} />
+        {/* Enrollment Routes */}
+        <Route path="/admin/enrollments/enroll" element={<AddEnrollment />} />
+        <Route path="/admin/enrollments/unenroll" element={<DeleteEnrollment />} />
         {/* Not Implemented Routes */}
         <Route path="*" element={<NotImplemented />} />
       </Routes>
