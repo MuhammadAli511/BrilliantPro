@@ -1,4 +1,5 @@
 import AdminDashboard from './Admin/AdminDashboard';
+import AddAssessment from './Admin/Assessment/AddAssessment';
 import AdminLogin from './Admin/Auth/AdminLogin';
 import AddCourse from './Admin/Course/AddCourse';
 import CourseDetails from './Admin/Course/CourseDetails';
@@ -43,6 +44,7 @@ export {
     StudentDashboard,
     CourseCatalog,
     AddEnrollment,
-    DeleteEnrollment
+    DeleteEnrollment,
+    AddAssessment
 };
 

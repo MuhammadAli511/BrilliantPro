@@ -231,3 +231,12 @@ export const getAllCourseEnrollments = async ({courseTitle}) => {
   });
   return await response.json();
 }
+
+export const addAssessment = async ({title, duration, course, passingCriteria, numQuestions, questions}) => {
+  const response = await fetch(`${API_URL}/assessmentRoute/add`, {
+    method: "POST",
+    headers: getHeaders(),
+    body: JSON.stringify({ title, duration, course, passingCriteria, numQuestions, questions }),
+  });
+  return await response.json();
+}

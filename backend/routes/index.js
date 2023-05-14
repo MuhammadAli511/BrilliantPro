@@ -4,6 +4,7 @@ const courseRoutes = require('./courseRoutes')
 const adminRoutes = require('./adminRoutes')
 const materialRoutes = require('./materialRoutes')
 const enrollmentRoutes = require('./enrollmentRoutes')
+const assessmentRoutes = require('./assessmentsRoutes')
 const router = express.Router()
 
 
@@ -17,5 +18,6 @@ router.use('/courseRoute',courseRoutes)
 router.use('/adminRoute',adminRoutes)
 router.use('/materialRoute',materialRoutes)
 router.use('/enrollmentRoute',enrollmentRoutes)
+router.use('/assessmentRoute',assessmentRoutes)
 
 module.exports = router

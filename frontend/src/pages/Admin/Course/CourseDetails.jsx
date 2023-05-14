@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaFileAlt, FaFileArchive, FaFileAudio, FaFileExcel, FaFileImage, FaFilePdf, FaFilePowerpoint, FaFileVideo, FaFileWord, FaUserCircle } from 'react-icons/fa';
-import { FiFileText, FiInfo, FiUsers } from 'react-icons/fi';
+import { FiArrowRight, FiFileText, FiInfo, FiUsers } from 'react-icons/fi';
 import { useParams } from "react-router-dom";
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { AdminNavbar } from "../../../components";
@@ -44,6 +44,8 @@ const CourseDetails = () => {
     const fetchProduct = async () => {
       const response = await getCourse({ title });
       response.course.materials = response.materials;
+      response.course.assessments = response.assessments;
+      console.log(response.course.assessments);
       setCourse(response.course);
     };
     const fetchLearners = async () => {
@@ -155,7 +157,54 @@ const CourseDetails = () => {
       </div>
     );
   }
-  
+
+  function CourseAssessments({ course }) {
+    return (
+      <div className="bg-gray-50 p-6 shadow-md rounded-md">
+        <h2 className="text-xl font-bold mb-2">Assessments:</h2>
+        <div className="flex flex-col">
+          {course.assessments &&
+            course.assessments.map((assessment, index) => (
+              <div
+                key={index}
+                className="flex flex-col mb-4 mr-4 bg-gray-300 p-2 rounded-md"
+              >
+                <div className="flex flex-row items-center">
+                  <FiArrowRight className="text-blue-500 mr-2" />
+                  <p className="font-bold">{assessment.title}</p>
+                </div>
+                <div className="mt-2 ml-4">
+                  <p><span className="font-bold">Duration:</span> {assessment.duration}</p>
+                  <p><span className="font-bold">Number of Questions:</span> {assessment.numQuestions}</p>
+                  <p><span className="font-bold">Passing Criteria:</span> {assessment.passingCriteria}</p>
+                </div>
+                <div className="mt-2 ml-4">
+                  <p className="font-bold">Questions:</p>
+                  {assessment.questions && assessment.questions.map((question, qIndex) => (
+                    <div key={qIndex} className="mt-2">
+                      <p><span className="font-bold">Question {qIndex + 1}:</span> {question.question}</p>
+                      <div className="ml-4">
+                        <p className="font-bold">Options:</p>
+                        {question.options && question.options.map((option, oIndex) => (
+                          <div key={oIndex} className="mt-2">
+                            <span className="mr-2">{oIndex + 1}.</span>
+
+                            <label htmlFor={`q${qIndex}-o${oIndex}`} className="ml-2">{option}</label>
+                          </div>
+                        ))}
+                      </div>
+                      <p><span className="font-bold">Correct Option:</span> {question.correctOption}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+    );
+  }
+
+
 
 
 
@@ -172,8 +221,8 @@ const CourseDetails = () => {
           <TabList className="flex">
             <Tab
               className={`${selectedIndex === 0
-                  ? "bg-indigo-600 text-white"
-                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                ? "bg-indigo-600 text-white"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
                 } py-4 px-6 font-medium mb-10 rounded-tl-lg`}
             >
               <FiInfo className="inline-block w-6 h-6 mr-2" />
@@ -181,8 +230,8 @@ const CourseDetails = () => {
             </Tab>
             <Tab
               className={`${selectedIndex === 1
-                  ? "bg-indigo-600 text-white"
-                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                ? "bg-indigo-600 text-white"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
                 } py-4 px-6 font-medium mb-10 rounded-tl-lg`}
             >
               <FiFileText className="inline-block w-6 h-6 mr-2" />
@@ -190,8 +239,17 @@ const CourseDetails = () => {
             </Tab>
             <Tab
               className={`${selectedIndex === 2
-                  ? "bg-indigo-600 text-white"
-                  : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                ? "bg-indigo-600 text-white"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
+                } py-4 px-6 font-medium mb-10 rounded-tl-lg`}
+            >
+              <FiFileText className="inline-block w-6 h-6 mr-2" />
+              Assessments
+            </Tab>
+            <Tab
+              className={`${selectedIndex === 3
+                ? "bg-indigo-600 text-white"
+                : "text-gray-500 hover:text-gray-700 hover:bg-gray-100"
                 } py-4 px-6 font-medium mb-10 rounded-tl-lg`}
             >
               <FiUsers className="inline-block w-6 h-6 mr-2" />
@@ -204,6 +262,9 @@ const CourseDetails = () => {
           </TabPanel>
           <TabPanel className="bg-white">
             <CourseMaterials course={course} />
+          </TabPanel>
+          <TabPanel className="bg-white">
+            <CourseAssessments course={course} />
           </TabPanel>
           <TabPanel className="bg-white">
             <CourseLearners enrollments={enrollments} />

@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler')
 const Course = require('../models/course')
 const Material = require('../models/material')
 const Audit = require('../models/audit')
-const Enrollments = require('../models/enrollments')
+const Assessment = require('../models/assessment')
 require('dotenv').config()
 
 
@@ -202,11 +202,6 @@ const getAllCourses = asyncHandler(async (req, res) => {
     }
 })
 
-// const getAllStudentCourses = asyncHandler(async (req, res) => {
-//     const auditEmail = req.header('email');
-//     const studentEmail = req.body.studentEmail
-//     const courses = await Course.find({})
-//     const enrollments = await Enrollments.find({ studentEmail })
 
 
 const getCourse = asyncHandler(async (req, res) => {
@@ -221,15 +216,16 @@ const getCourse = asyncHandler(async (req, res) => {
         return
     }
     const course = await Course.findOne({ title })
-    // get all materials where title is present in courseTitles array
     const materials = await Material.find({ courseTitles: { $in: [title] } })
-
+    const assessments = await Assessment.find({ course: { $in: [title] } })
+    
     
     if (course && materials) {
         const data = {
             status: 200,
             course,
-            materials
+            materials,
+            assessments
         }
         auditAdd(auditEmail, 'Course', 'Get', title);
         res.status(200).json(data)

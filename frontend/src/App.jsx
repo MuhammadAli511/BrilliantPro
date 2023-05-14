@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import {
+  AddAssessment,
   AddCourse,
   AddEnrollment,
   AddLearner,
@@ -55,6 +56,8 @@ function App() {
         {/* Enrollment Routes */}
         <Route path="/admin/enrollments/enroll" element={<AddEnrollment />} />
         <Route path="/admin/enrollments/unenroll" element={<DeleteEnrollment />} />
+        {/* Assessments Routes */}
+        <Route path="/admin/assessments/upload" element={<AddAssessment />} />
         {/* Not Implemented Routes */}
         <Route path="*" element={<NotImplemented />} />
       </Routes>
