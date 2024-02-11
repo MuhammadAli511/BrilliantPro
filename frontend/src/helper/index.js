@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://brilliantpro-backend.onrender.com/api";
 
 // Function to get the stored JWT token
 const getToken = () => {
